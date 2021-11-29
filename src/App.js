@@ -41,8 +41,13 @@ function App() {
     }
     fetchAppt();
   }, [currentDoc, cancelCLicked, isEditing, isBooking]);
-
-
+//!*********** RESET DOCTOR AND DATE **********************
+  // reset doctor
+  const resetDoctorDate = () => {
+    setCurrentDoc(null);
+    setDate(null);
+  };
+//!*********** RESET DOCTOR AND DATE **********************
 //!*********** DELETE **********************
 
 // handle cancel an appointment
@@ -126,14 +131,13 @@ function App() {
     setIsBooking(false);
   };
   
-
+  
   //!*********** Booking **********************
   return (
     <div className="App-header">
       
       {
-        isEditing
-          ?
+        isEditing ?
           <EditApptForm
             currentAppt={currentAppt}
             cancelEditing={cancelEditing}
@@ -141,28 +145,32 @@ function App() {
             currentDoc={currentDoc}
           />
           :
-        <>
-          <Doctors doctors={doctors} changeDoctor={changeDoctor} />
-            {
-              isBooking
-              ?
+          <>
+            <Doctors
+              doctors={doctors}
+              resetDoctorDate={resetDoctorDate}
+              changeDoctor={changeDoctor}
+            />
+            {isBooking ?
               <AddApptForm
                 cancelbooking={cancelbooking}
                 currentDoc={currentDoc}
                 handleBookAppt={handleBookAppt}
               />
               :
-              <>
-                <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
-                <Appointments
-                  appts={filterAppts(docAppts, date)}
-                  handleDeleteAppt={handleDeleteAppt}
-                  handleEditAppt={handleEditAppt}
-                  currentDoc={currentDoc}
-                  editAppt={editAppt}
-                  bookAppt={bookAppt}
-                />
-              </>
+              
+              currentDoc &&
+              <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
+            }
+            {currentDoc &&
+              <Appointments
+                appts={filterAppts(docAppts, date)}
+                handleDeleteAppt={handleDeleteAppt}
+                handleEditAppt={handleEditAppt}
+                currentDoc={currentDoc}
+                editAppt={editAppt}
+                bookAppt={bookAppt}
+              />
             }
         </>
       }
