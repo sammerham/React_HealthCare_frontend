@@ -34,7 +34,6 @@ function App() {
     async function fetchAppt() {
       if (currentDoc) {
         const apptsData = await ApptsApi.getDocAppt(currentDoc.id);
-        console.log(apptsData, 'apptsData')
         setDocAppts(appts => apptsData);
         setCancelClicked(false)
       }
@@ -52,7 +51,6 @@ function App() {
 
 // handle cancel an appointment
   const handleDeleteAppt = async id => {
-     console.log('handlecancel clicked')
      await ApptsApi.cancelDocAppt(id);
      setCancelClicked(true);
   };
@@ -89,7 +87,6 @@ function App() {
   //!*********** EDITTING **********************
   // edit editing to be passed to edit form
   const editAppt = appt => {
-    console.log('edit appt clicked')
     setCurrentAppt(appt)
     setIsEditing(true);
   }
@@ -98,12 +95,9 @@ function App() {
     setIsEditing(false);
     setCurrentAppt(null)
   }
-  console.log('adfter cick edit', currentAppt)
-  console.log('adfter cick edit', isEditing)
+
   // handle edit an appointment
   const handleEditAppt = async (id, data) => {
-
-    console.log('handleedit clicked in APP---->>>')
     await ApptsApi.updateDocAppt(id, data);
     setIsEditing(false);
   };
@@ -114,19 +108,14 @@ function App() {
   //!*********** Booking **********************
   // edit editing to be passed to edit form
   const bookAppt = () => {
-    console.log('book appt clicked')
     setIsBooking(true);
   }
   // cancel editing to be passed to edit form
   const cancelbooking = () => {
     setIsBooking(false);
   }
-  // console.log('adfter cick edit', currentAppt)
-  // console.log('adfter cick edit', isEditing)
   // handle edit an appointment
   const handleBookAppt = async (data) => {
-
-    console.log('handle ADD APPT clicked in APP---->>>')
     await ApptsApi.AddDocAppt(data);
     setIsBooking(false);
   };

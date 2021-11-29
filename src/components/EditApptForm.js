@@ -24,7 +24,7 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
   const handleCancel = e => {
     cancelEditing();
   };
-  console.log(currentDoc, 'current DOC')
+ 
   return (
     <div>
       <h3>Update appointment for Dr. {currentDoc.last_name}</h3>

@@ -11,7 +11,6 @@ function AddApptForm({ cancelbooking, currentDoc, handleBookAppt}) {
     kind:"",
   }
   const [formData, setFormData] = useState(initialFormData);
-  console.log('add form data', formData)
   // handleChange with form Data
   const handleChange = e => {
     const { name, value } = e.target;
@@ -30,7 +29,7 @@ function AddApptForm({ cancelbooking, currentDoc, handleBookAppt}) {
   const handleCancel = e => {
     cancelbooking();
   };
-  console.log('currnet doc', currentDoc)
+  
   return (
     <div>
       <h3>Appointment for Dr. {currentDoc.last_name}</h3>
