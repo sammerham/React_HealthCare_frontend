@@ -10,7 +10,7 @@ function Appointments({ appts, handleDeleteAppt, currentDoc, editAppt, bookAppt}
     <div>
       <h3>Dr. {first_name} {last_name}'s Appointments:</h3>
       {appts.length ?
-      <ul>
+      <ul style={{listStyle:'none'}}>
         {appts.map(appt =>
           <Appointment
             appt={appt}
