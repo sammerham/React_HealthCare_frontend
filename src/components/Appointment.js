@@ -1,8 +1,6 @@
-//name, time, kind, cancel, add
-//patient_first_name. patient_last_name - kind, appt_time
 import React from 'react'
 import moment from "moment";
-// import ApptsApi from '../api/apptsApi';
+
 
 function Appointment({ appt, handleDeleteAppt, editAppt }) {
 

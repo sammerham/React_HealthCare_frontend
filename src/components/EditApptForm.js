@@ -38,6 +38,7 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
           value={formData.patient_first_name}
           onChange={handleChange}
         />
+        <br />
         <label htmlFor="patient_last_name">Patient Last Name:</label>
         <input
           type="text"
@@ -47,6 +48,7 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
           value={formData.patient_last_name}
           onChange={handleChange}
         />
+        <br />
         <label htmlFor="appt_time">Appointment Time:</label>
         <input
           type="time"
@@ -56,24 +58,29 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
           value={formData.appt_time}
           onChange={handleChange}
         />
+        <br />
         <label htmlFor="appt_date">Appointment Date:</label>
         <input
           type="date"
           name="appt_date"
+          required
           id="appt_date"
           placeholder={moment(currentAppt.appt_date).utc().format('YYYY-MM-DD')}
           value={moment(formData.appt_date).utc().format('YYYY-MM-DD')}
           onChange={handleChange}
         />
+        <br />
         <label htmlFor="kind">Appointment Kind:</label>
         <input
           type="text"
           name="kind"
+          required
           id="kind"
           placeholder={currentAppt.kind}
           value={formData.kind}
           onChange={handleChange}
         />
+        <br />
         <button onClick={handleSubmit}>Update</button>
         <button onClick={handleCancel}>Cancel</button>
       </form>

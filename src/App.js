@@ -45,6 +45,7 @@ function App() {
   const resetDoctorDate = () => {
     setCurrentDoc(null);
     setDate(null);
+    setIsBooking(false);
   };
 //!*********** RESET DOCTOR AND DATE **********************
 //!*********** DELETE **********************
@@ -125,44 +126,27 @@ function App() {
   return (
     <div className="App-header">
       
-      {
-        isEditing ?
-          <EditApptForm
-            currentAppt={currentAppt}
-            cancelEditing={cancelEditing}
-            handleEditAppt={handleEditAppt}
-            currentDoc={currentDoc}
-          />
-          :
-          <>
             <Doctors
               doctors={doctors}
               resetDoctorDate={resetDoctorDate}
               changeDoctor={changeDoctor}
+              handleDeleteAppt={handleDeleteAppt}
+              handleEditAppt={handleEditAppt}
+              currentDoc={currentDoc}
+              editAppt={editAppt}
+              bookAppt={bookAppt}
+              cancelbooking={cancelbooking}
+              handleBookAppt={handleBookAppt}
+              isBooking={isBooking}
+              handleDateChange={handleDateChange}
+              currentAppt={currentAppt}
+              cancelEditing={cancelEditing}
+              isEditing={isEditing}
+              filterAppts={filterAppts}
+              docAppts={docAppts}
+              date={date}
+        
             />
-            {isBooking ?
-              <AddApptForm
-                cancelbooking={cancelbooking}
-                currentDoc={currentDoc}
-                handleBookAppt={handleBookAppt}
-              />
-              :
-              
-              currentDoc &&
-              <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
-            }
-            {currentDoc &&
-              <Appointments
-                appts={filterAppts(docAppts, date)}
-                handleDeleteAppt={handleDeleteAppt}
-                handleEditAppt={handleEditAppt}
-                currentDoc={currentDoc}
-                editAppt={editAppt}
-                bookAppt={bookAppt}
-              />
-            }
-        </>
-      }
     </div>
   );
 }
