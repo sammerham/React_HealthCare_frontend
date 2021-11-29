@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import moment from "moment";
-function EditApptForm({ currentAppt, cancelEditing, handleEditAppt }) {
+function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }) {
   const [formData, setFormData] = useState(currentAppt);
 
   // handleChange with form Data
@@ -24,9 +24,10 @@ function EditApptForm({ currentAppt, cancelEditing, handleEditAppt }) {
   const handleCancel = e => {
     cancelEditing();
   };
-
+  console.log(currentDoc, 'current DOC')
   return (
     <div>
+      <h3>Update appointment for Dr. {currentDoc.last_name}</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="patient_first_name">Patient First Name:</label>
         <input

@@ -125,40 +125,45 @@ function App() {
     await ApptsApi.AddDocAppt(data);
     setIsBooking(false);
   };
+  
 
   //!*********** Booking **********************
   return (
     <div className="App-header">
       
       {
-        isEditing ?
+        isEditing
+          ?
           <EditApptForm
-        currentAppt={currentAppt}
-        cancelEditing={cancelEditing}
-        handleEditAppt={handleEditAppt}
+            currentAppt={currentAppt}
+            cancelEditing={cancelEditing}
+            handleEditAppt={handleEditAppt}
+            currentDoc={currentDoc}
           />
           :
         <>
           <Doctors doctors={doctors} changeDoctor={changeDoctor} />
-            {isBooking ? <AddApptForm
-              cancelbooking={cancelbooking}
-              currentDoc={currentDoc}
-              handleBookAppt={handleBookAppt}
-            /> :
-          
-            currentDoc &&
-            <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
-            &&
-            <Appointments
-              appts={filterAppts(docAppts, date)}
-              handleDeleteAppt={handleDeleteAppt}
-              handleEditAppt={handleEditAppt}
-              currentDoc={currentDoc}
-              editAppt={editAppt}
-              bookAppt={bookAppt}
-            />
-            
-      }
+            {
+              isBooking
+              ?
+              <AddApptForm
+                cancelbooking={cancelbooking}
+                currentDoc={currentDoc}
+                handleBookAppt={handleBookAppt}
+              />
+              :
+              <>
+                <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
+                <Appointments
+                  appts={filterAppts(docAppts, date)}
+                  handleDeleteAppt={handleDeleteAppt}
+                  handleEditAppt={handleEditAppt}
+                  currentDoc={currentDoc}
+                  editAppt={editAppt}
+                  bookAppt={bookAppt}
+                />
+              </>
+            }
         </>
       }
     </div>
