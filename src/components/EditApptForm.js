@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 import moment from "moment";
 function EditApptForm({ currentAppt, cancelEditing, handleEditAppt }) {
   const [formData, setFormData] = useState(currentAppt);
-  
+
   // handleChange with form Data
   const handleChange = e => {
     const { name, value } = e.target;
@@ -66,7 +66,7 @@ function EditApptForm({ currentAppt, cancelEditing, handleEditAppt }) {
         />
         <label htmlFor="kind">Appointment Kind:</label>
         <input
-          type="kind"
+          type="text"
           name="kind"
           id="kind"
           placeholder={currentAppt.kind}

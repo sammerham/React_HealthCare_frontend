@@ -5,6 +5,7 @@ import Doctors from './components/Doctors';
 import DoctorInfo from './components/DoctorInfo';
 import Appointments from './components/Appointments';
 import EditApptForm from './components/EditApptForm';
+import AddApptForm from './components/AddApptForm';
 import moment from "moment";
 // import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
   const [cancelCLicked, setCancelClicked] = useState(false);
   const [date, setDate] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isBooking, setIsBooking] = useState(false);
 
 
   // side effect to get all the doctors on initial render
@@ -38,7 +40,7 @@ function App() {
       }
     }
     fetchAppt();
-  }, [currentDoc, cancelCLicked, isEditing]);
+  }, [currentDoc, cancelCLicked, isEditing, isBooking]);
 
 
 //!*********** DELETE **********************
@@ -63,6 +65,8 @@ function App() {
 // fn to handle change for doctor;
   const changeDoctor = (doctor) => {
     setCurrentDoc(currentDoc => doctor);
+    setIsBooking(false);
+
   };
   //!*********** DoctorChange **********************
 
@@ -79,15 +83,15 @@ function App() {
 
   //!*********** EDITTING **********************
   // edit editing to be passed to edit form
-  const cancelEditing = () => {
-    setIsEditing(false);
-    setCurrentAppt(null)
-  }
-  // cancel editing to be passed to edit form
   const editAppt = appt => {
     console.log('edit appt clicked')
     setCurrentAppt(appt)
     setIsEditing(true);
+  }
+  // cancel editing to be passed to edit form
+  const cancelEditing = () => {
+    setIsEditing(false);
+    setCurrentAppt(null)
   }
   console.log('adfter cick edit', currentAppt)
   console.log('adfter cick edit', isEditing)
@@ -100,6 +104,29 @@ function App() {
   };
 
   //!*********** EDITTING **********************
+
+
+  //!*********** Booking **********************
+  // edit editing to be passed to edit form
+  const bookAppt = () => {
+    console.log('book appt clicked')
+    setIsBooking(true);
+  }
+  // cancel editing to be passed to edit form
+  const cancelbooking = () => {
+    setIsBooking(false);
+  }
+  // console.log('adfter cick edit', currentAppt)
+  // console.log('adfter cick edit', isEditing)
+  // handle edit an appointment
+  const handleBookAppt = async (data) => {
+
+    console.log('handle ADD APPT clicked in APP---->>>')
+    await ApptsApi.AddDocAppt(data);
+    setIsBooking(false);
+  };
+
+  //!*********** Booking **********************
   return (
     <div className="App-header">
       
@@ -113,8 +140,12 @@ function App() {
           :
         <>
           <Doctors doctors={doctors} changeDoctor={changeDoctor} />
-      
-          {
+            {isBooking ? <AddApptForm
+              cancelbooking={cancelbooking}
+              currentDoc={currentDoc}
+              handleBookAppt={handleBookAppt}
+            /> :
+          
             currentDoc &&
             <DoctorInfo currentDoc={currentDoc} handleDateChange={handleDateChange} />
             &&
@@ -124,8 +155,10 @@ function App() {
               handleEditAppt={handleEditAppt}
               currentDoc={currentDoc}
               editAppt={editAppt}
+              bookAppt={bookAppt}
             />
-          }
+            
+      }
         </>
       }
     </div>

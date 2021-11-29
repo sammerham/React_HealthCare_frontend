@@ -1,5 +1,4 @@
 import axios from "axios";
-import moment from "moment";
 const URL = 'http://localhost:3000/';
 
 
@@ -32,7 +31,18 @@ class ApptsApi {
       data
     })
   return res.data;
-};
+  };
+
+
+  // Add new appt
+  static async AddDocAppt(data) {
+    const res = await axios({
+      method: 'post',
+      url: `${URL}appts/`,
+      data
+    })
+    return res.data;
+  };
 }
 
 export default ApptsApi;

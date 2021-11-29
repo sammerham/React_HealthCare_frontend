@@ -2,7 +2,7 @@ import React from 'react'
 import Appointment from './Appointment'
 // import ApptsApi from '../api/apptsApi';
 
-function Appointments({ appts, handleDeleteAppt, currentDoc, editAppt}) {
+function Appointments({ appts, handleDeleteAppt, currentDoc, editAppt, bookAppt}) {
   console.log(appts)
 
   const { first_name, last_name } = currentDoc;
@@ -24,7 +24,7 @@ function Appointments({ appts, handleDeleteAppt, currentDoc, editAppt}) {
         <p>No appts booked yet!!</p>
       }
       
-      <button>Book</button>
+      <button onClick={()=> bookAppt()}>Book</button>
     </div>
   )
 }
