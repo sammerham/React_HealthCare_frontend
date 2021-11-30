@@ -2,12 +2,10 @@ import { React, useState, useEffect } from 'react';
 import DoctorsApi from './api/doctorsApi';
 import ApptsApi from './api/apptsApi';
 import Doctors from './components/Doctors';
-import DoctorInfo from './components/DoctorInfo';
-import Appointments from './components/Appointments';
-import EditApptForm from './components/EditApptForm';
-import AddApptForm from './components/AddApptForm';
+import AppContext from './appContext';
+
 import moment from "moment";
-// import './App.css';
+
 
 function App() {
   const [doctors, setDoctors] = useState([]);
@@ -121,32 +119,32 @@ function App() {
     setIsBooking(false);
   };
   
-  
   //!*********** Booking **********************
+
   return (
     <div className="App-header">
-      
-            <Doctors
-              doctors={doctors}
-              resetDoctorDate={resetDoctorDate}
-              changeDoctor={changeDoctor}
-              handleDeleteAppt={handleDeleteAppt}
-              handleEditAppt={handleEditAppt}
-              currentDoc={currentDoc}
-              editAppt={editAppt}
-              bookAppt={bookAppt}
-              cancelbooking={cancelbooking}
-              handleBookAppt={handleBookAppt}
-              isBooking={isBooking}
-              handleDateChange={handleDateChange}
-              currentAppt={currentAppt}
-              cancelEditing={cancelEditing}
-              isEditing={isEditing}
-              filterAppts={filterAppts}
-              docAppts={docAppts}
-              date={date}
-        
-            />
+      <AppContext.Provider value={{
+              doctors,
+              resetDoctorDate,
+              changeDoctor,
+              handleDeleteAppt,
+              handleEditAppt,
+              currentDoc,
+              editAppt,
+              bookAppt,
+              cancelbooking,
+              handleBookAppt,
+              isBooking,
+              handleDateChange,
+              currentAppt,
+              cancelEditing,
+              isEditing,
+              filterAppts,
+              docAppts,
+              date,
+      }}>
+        <Doctors />
+      </AppContext.Provider>
     </div>
   );
 }

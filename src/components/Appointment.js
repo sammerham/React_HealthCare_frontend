@@ -1,11 +1,13 @@
-import React from 'react'
+import { React, useContext } from 'react';
+import AppContext from '../appContext';
 import moment from "moment";
 
 
-function Appointment({ appt, handleDeleteAppt, editAppt }) {
+function Appointment({ appt }) {
 
+  const { handleDeleteAppt, editAppt } = useContext(AppContext);
+  
   return (
-
     <div>
       <li>
         <p><b>Patient Name:</b> {appt.patient_first_name} {appt.patient_last_name}</p>

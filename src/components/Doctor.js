@@ -1,20 +1,23 @@
-import React from 'react'
+import { React, useContext } from 'react';
+import AppContext from '../appContext';
 
 
+function Doctor({ doctor }) {
+  
+  const { changeDoctor } = useContext(AppContext);
 
-//{
-// "id": 1,
-//   "first_name": "Oliver",
-//     "last_name": "Twist"
-//     }
-function Doctor({ doctor, changeDoctor }) {
-  const handleChangeDoctor = () => {
-    changeDoctor(doctor);
-  }
+  // chnage current doctor;
+  const handleChangeDoctor = () => changeDoctor(doctor);
+
   
   return (
     doctor.first_name &&
-    <li onClick={handleChangeDoctor} style={{ cursor: 'pointer' }}>{doctor.last_name}, &nbsp;{doctor.first_name}</li>
+    <li
+      onClick={handleChangeDoctor}
+      style={{ cursor: 'pointer' }}
+    >
+      {doctor.last_name}, &nbsp;{doctor.first_name}
+    </li>
   )
 };
 

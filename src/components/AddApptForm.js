@@ -1,6 +1,10 @@
-import { React, useState } from 'react'
-// import moment from "moment";
-function AddApptForm({ cancelbooking, currentDoc, handleBookAppt}) {
+import { React, useState, useContext } from 'react';
+import AppContext from '../appContext';
+
+
+function AddApptForm() {
+  
+  const { cancelbooking, currentDoc, handleBookAppt } = useContext(AppContext);
   const initialFormData = {
     doctor_First_Name:currentDoc.first_name,
     doctor_Last_Name:currentDoc.last_name,
@@ -19,12 +23,13 @@ function AddApptForm({ cancelbooking, currentDoc, handleBookAppt}) {
       [name]: value,
     }));
   };
+
   // handleSubmit when form Submits
   const handleSubmit = e => {
     e.preventDefault();
     handleBookAppt(formData);
-    // handleEditAppt(formData.id, data);
   };
+
   // handle cancel update
   const handleCancel = e => {
     cancelbooking();

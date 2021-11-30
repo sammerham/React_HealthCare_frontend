@@ -1,7 +1,12 @@
-import React from 'react'
+import { React, useContext } from 'react';
+import AppContext from '../appContext';
 
-function DoctorInfo({ currentDoc, handleDateChange }) {
+
+function DoctorInfo() {
+
+  const { currentDoc, handleDateChange } = useContext(AppContext);
   const { first_name, last_name } = currentDoc;
+  
   return (
     <div>
       <h1>Dr. {first_name} {last_name}</h1>

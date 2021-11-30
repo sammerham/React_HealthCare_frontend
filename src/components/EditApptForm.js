@@ -1,6 +1,11 @@
-import { React, useState } from 'react'
+import { React, useState, useContext} from 'react'
+import AppContext from '../appContext';
 import moment from "moment";
-function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }) {
+
+
+function EditApptForm() {
+  
+  const { currentAppt, currentDoc, cancelEditing, handleEditAppt } = useContext(AppContext);
   const [formData, setFormData] = useState(currentAppt);
 
   // handleChange with form Data
@@ -11,6 +16,7 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
       [name]: value,
     }));
   };
+
   // handleSubmit when form Submits
   const handleSubmit = e => {
     const data = {
@@ -20,6 +26,7 @@ function EditApptForm({ currentAppt, currentDoc, cancelEditing, handleEditAppt }
     e.preventDefault();
     handleEditAppt(formData.id, data);
   };
+  
 // handle cancel update
   const handleCancel = e => {
     cancelEditing();
