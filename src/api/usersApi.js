@@ -10,8 +10,8 @@ const URL = 'http://localhost:3001/';
  *
  */
 
-class ApptsApi {
-static token;
+class UsersApi {
+
   // get list of appt for a certain doctor by date
   static async getDocAppt(id) {
     const res = await axios.get(`${URL}appts/doctorId/${id}`);
@@ -45,4 +45,4 @@ static token;
   };
 }
 
-export default ApptsApi;
+export default UsersApi;

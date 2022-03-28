@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = 'http://localhost:3000/';
+const URL = 'http://localhost:3001/';
 
 
 /** API Class.
@@ -13,12 +13,20 @@ const URL = 'http://localhost:3000/';
 class DoctorsApi {
 
 // get list of doctors
-
-static async getDoctors() {
-  const res = await axios.get(`${URL}doctors`);
-  return res.data.doctors;
-};
-
+static token;
+static async getDoctors(token) {
+    try {
+      const res = await axios({
+        method: 'get',
+        url: `${URL}doctors`,
+        headers : { Authorization: `Bearer ${token}` }
+      })
+      // console.log(res)
+      return res.data;
+    } catch (e) {
+      console.log(e.response.data.error.message)
+    }
+  };
 }
 
 export default DoctorsApi;
