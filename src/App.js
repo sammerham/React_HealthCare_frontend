@@ -140,11 +140,11 @@ function App() {
   
   //!*********** Booking **********************
 const data = {
-          username: "new2",
-          firstName: "first2",
-          lastName: "last2",
-          password: "password2",
-          email: "new2@email.com",
+          username: "new5",
+          firstName: "first5",
+          lastName: "last5",
+          password: "password5",
+          email: "new5@email.com",
 }
   const loginData = { username: 'samehisaac', password: 'samehisaac' };
 
@@ -153,7 +153,8 @@ const data = {
 * localStorage & updates hasLocalToken */
   
   const handleRegister = async () => {
-      const tokenRes = await AuthApi.register(data);
+    const tokenRes = await AuthApi.register(data);
+    console.log('tokenres in rgister in app', tokenRes)
       localStorage.setItem("item", tokenRes);
       setHasLocalToken(true)
   };
@@ -164,6 +165,7 @@ const data = {
    * localStorage and updates hasLocalToken */
   const handleLogin = async () => {
     const tokenRes = await AuthApi.login(loginData);
+    console.log('token lon in in app', tokenRes)
     setHasLocalToken(true);
     localStorage.setItem("item", tokenRes);
   };
@@ -179,7 +181,7 @@ const data = {
   // handlle get doctors
   const handleDoctors = async () => {
     const doctors = await DoctorsApi.getDoctors(localStorage.getItem('item'));
-    
+    console.log('docts in local storage--->>',localStorage.getItem('item' ))
     if(doctors)
     setDoctors(oldToken => doctors.doctors);
   };

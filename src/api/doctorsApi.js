@@ -21,7 +21,7 @@ static async getDoctors(token) {
         url: `${URL}doctors`,
         headers : { Authorization: `Bearer ${token}` }
       })
-      // console.log(res)
+  
       return res.data;
     } catch (e) {
       console.log(e.response.data.error.message)
